@@ -33,8 +33,9 @@ jobs:
         git add berlin_pankow_franzbucholz_weather_forecast.csv
         git diff --quiet && echo "No changes to commit" || git commit -m "Update weather data"
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/THDOOO/weather-forecast-automation.git
+        git fetch origin
+        git branch --set-upstream-to=origin/main main
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
 
