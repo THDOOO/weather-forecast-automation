@@ -24,7 +24,9 @@ jobs:
         pip install requests pandas
 
     - name: Run weather script
-      run: python fetch_weather.py
+      run: |
+        python fetch_weather.py
+        cat berlin_pankow_franzbucholz_weather_forecast.csv
 
     - name: Commit and push CSV if changed
       run: |

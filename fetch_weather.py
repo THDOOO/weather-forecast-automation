@@ -42,11 +42,11 @@ if response.status_code == 200:
     df = df[["Temp Max (°C)", "Rain Chance (%)", "Rain Amount (mm)", "Forecast Run Date"]]
 
     csv_file = "berlin_pankow_franzbucholz_weather_forecast.csv"
-
-    if os.path.exists(csv_file):
-        df.to_csv(csv_file, mode='a', header=False)
-    else:
-        df.to_csv(csv_file)
+    print("Fetched DataFrame:")
+    print(df.head())
+    print(f"Number of rows fetched: {len(df)}")
+    write_header = not os.path.isfile(csv_file) or os.stat(csv_file).st_size == 0
+    df.to_csv(csv_file, mode='a', header=write_header)
 
     print(f"Forecast data saved to {csv_file}")
 
