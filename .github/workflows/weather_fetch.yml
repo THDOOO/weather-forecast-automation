@@ -29,15 +29,13 @@ jobs:
         cat berlin_pankow_franzbucholz_weather_forecast.csv
 
     - name: Commit and push CSV if changed
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git add berlin_pankow_franzbucholz_weather_forecast.csv
-        git diff --quiet && echo "No changes to commit" || git commit -m "Update weather data"
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/THDOOO/weather-forecast-automation.git
-        git fetch origin
-        git branch --set-upstream-to=origin/main main
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    run: |
+      git config --global user.name "github-actions[bot]"
+      git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      git add berlin_pankow_franzbucholz_weather_forecast.csv
+      git commit -m "Update weather data (forced commit)" || echo "No changes to commit"
+      git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/THDOOO/weather-forecast-automation.git
+      git push
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
